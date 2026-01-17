@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桃園機場專業接送 - 春節返鄉/出國首選 | 固定車隊服務</title>
+    <meta name="description" content="專業桃園機場接送服務，提供五人座、九人座及豪華車款。過年春節期間預約開放中，專職司機、準時安全。立即加入 LINE 預約，拒絕坐地起價。">
+    <meta name="keywords" content="桃園機場接送, 機場接送, 過年機場接送, 桃園機場包車, 九人座機場接送">
+    
+    <!-- 引入字體 Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入圖標庫 FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 基礎設定 --- */
+        :root {
+            --primary-color: #0f172a; /* 深藍色：專業穩重 */
+            --accent-color: #ca8a04;  /* 金色：強調與CTA */
+            --bg-light: #f8fafc;
+            --text-dark: #334155;
+            --text-light: #94a3b8;
+            --white: #ffffff;
+            --line-green: #06c755; /* LINE 官方顏色 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            padding-bottom: 60px; /* 為了避開懸浮按鈕 */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- 導航列 --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--accent-color); }
+
+        /* 手機版導航隱藏 (簡單處理) */
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* 手機版暫時隱藏選單，強調直接預約 */
+        }
+
+        /* --- 首頁 Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 80vh; /* 佔據螢幕80%高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-btn {
+            background-color: var(--line-green);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            background-color: #05b34c;
+        }
+
+        /* --- 通用區塊設定 --- */
+        section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        /* --- 車型介紹 --- */
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .car-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .car-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #cbd5e1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 { margin-bottom: 10px; color: var(--primary-color); }
+        
+        .car-specs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .car-specs span { display: flex; align-items: center; gap: 5px; }
+
+        .not-suitable {
+            background-color: #fff1f2;
+            color: #be123c;
+            font-size: 0.85rem;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* --- 預約須知 --- */
+        .rules-container {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .alert-box {
+            background-color: #fff7ed;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .alert-box h4 { color: #9a3412; margin-bottom: 5px; }
+        
+        .rule-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .rule-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- 關於我們 --- */
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 { margin-bottom: 10px; }
+
+        /* --- 頁尾 --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 40px 5% 80px; /* 底部留白給懸浮按鈕 */
+            text-align: center;
+        }
+
+        .footer-info p { margin-bottom: 10px; }
+        .footer-line-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--white);
+            border: 1px solid var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* --- 懸浮 LINE 按鈕 --- */
+        .floating-line {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--line-green);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(6, 199, 85, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 199, 85, 0); }
+        }
+
+        /* 手機版優化：懸浮按鈕變為底部長條 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            
+            .floating-line {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                border-radius: 0;
+                justify-content: center;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導航列 -->
+    <header>
+        <div class="logo">桃園機場專送</div>
+        <nav>
+            <ul>
+                <li><a href="#services">車型服務</a></li>
+                <li><a href="#rules">預約須知</a></li>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#contact">聯絡我們</a></li>
+            </ul>
+        </nav>
+        <!-- 手機版這裡不顯示選單按鈕，因為目標單純，直接導向內容 -->
+    </header>
+
+    <!-- 首頁 Hero -->
+    <div class="hero">
+        <h1>2025 春節機場接送<br>現正預約中</h1>
+        <p>專業車隊、準時抵達。拒絕年節坐地起價，請提早卡位。</p>
+        <a href="https://line.me/ti/p/您的LINEID" target="_blank" class="cta-btn">
+            <i class="fab fa-line"></i> 立即加 LINE 詢價
+        </a>
+    </div>
+
+    <!-- 車型介紹 -->
+    <section id="services">
+        <h2 class="section-title">車型與服務說明</h2>
+        <div class="cars-grid">
+            <!-- 一般轎車 -->
+            <div class="car-card">
+                <div class="car-img-placeholder">
+                    <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=600&auto=format&fit=crop" alt="一般轎車" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="car-info">
+                    <h3>一般轎車 (Sedan)</h3>
+                    <p style="margin-bottom:10px; color:#666;">車款：Toyota Camry / Altis 等級</p>
+                    <div class="car-specs">
+                        <span><i class="fas fa-user"></i> 1-3 人</span>
+                        <span><i class="fas fa-suitcase"></i> 2 件大行李</span>
+                    </div>
+                    <div class="not-suitable">
+                        <i class="fas fa-exclamation-circle"></i> 不適合：超過 3 人或有滑雪板、高爾夫球具者。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 九人座 -->
+            <div class="car-card">
+                <div class="car-img-placeholder">
+                     <img src="https://images.unsplash.com/photo-1632245889029-e406faaa34cd?q=80&w=600&auto=format&fit=crop" alt="九人座商旅" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="car-info">
+                    <h3>九人座商旅 (Van)</h3>
+                    <p style="margin-bottom:10px; color:#666;">車款：VW T6 / Benz Vito</p>
+                    <div class="car-specs">
+                        <span><i class="fas fa-user"></i> 4-8 人</span>
+                        <span><i class="fas fa-suitcase"></i> 6-8 件大行李</span>
+                    </div>
+                    <div class="not-suitable">
+                        <i class="fas fa-info-circle"></i> 適合家庭出遊、行李較多之旅客。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 豪華車 -->
+            <div class="car-card">
+                <div class="car-img-placeholder">
+                     <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=600&auto=format&fit=crop" alt="豪華轎車" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="car-info">
+                    <h3>進口豪華車 (Luxury)</h3>
+                    <p style="margin-bottom:10px; color:#666;">車款：Benz E-Class / S-Class / Lexus</p>
+                    <div class="car-specs">
+                        <span><i class="fas fa-user"></i> VIP 接送</span>
+                        <span><i class="fas fa-star"></i> 尊榮服務</span>
+                    </div>
+                    <div class="not-suitable">
+                        <i class="fas fa-check-circle"></i> 適合商務接待、重視舒適度之貴賓。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 預約須知 -->
+    <section id="rules" style="background-color: #fff;">
+        <h2 class="section-title">預約方式與注意事項</h2>
+        <div class="rules-container">
+            <div class="alert-box">
+                <h4><i class="fas fa-bullhorn"></i> 過年期間特別公告</h4>
+                <p>農曆春節（除夕前後）運量大增，請務必提前 7 天預約。臨時叫車可能無法安排或需加收急件費。</p>
+            </div>
+            
+            <h3 style="margin-bottom: 20px;">預約需提供資料：</h3>
+            <ul class="rule-list">
+                <li>日期與時間（班機起飛/抵達時間）</li>
+                <li>航班號碼（我們會追蹤班機狀況）</li>
+                <li>上下車完整地址</li>
+                <li>搭乘人數與行李件數（請務必誠實告知，以免車輛裝不下）</li>
+                <li>聯絡人電話與 LINE ID</li>
+            </ul>
+
+            <h3 style="margin-bottom: 20px; margin-top: 30px;">加價說明：</h3>
+            <ul class="rule-list" style="color: #64748b;">
+                <li>夜間加成：23:00 - 06:00 加收 $200 元</li>
+                <li>偏遠地區：依區域另行報價</li>
+                <li>多點上下車：每增加一點加收 $100-$300 元</li>
+                <li>舉牌服務：另需加收費用</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 關於我們 -->
+    <section id="about">
+        <h2 class="section-title">為什麼選擇我們</h2>
+        <div class="about-features">
+            <div class="feature-item">
+                <i class="fas fa-user-tie"></i>
+                <h3>專業固定司機</h3>
+                <p>非兼職跑單，司機皆受過專業訓練，素質穩定有保障。</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <h3>準時守信</h3>
+                <p>我們深知搭機不能遲到。經驗豐富的路線規劃，確保您準時抵達。</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-car-side"></i>
+                <h3>車況優良</h3>
+                <p>定期保養清潔，無菸車環境，給您舒適的休息空間。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer id="contact">
+        <div class="footer-info">
+            <h3>聯絡我們</h3>
+            <p>LINE ID：@您的ID (記得加小老鼠)</p>
+            <p>預約專線：09xx-xxx-xxx</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+                &copy; 2025 桃園機場專業接送車隊. All Rights Reserved.
+            </p>
+            <br>
+            <p style="font-size: 0.8rem; opacity: 0.5;">
+                本網站專注於機場接送服務，非計程車叫車平台。
+            </p>
+        </div>
+    </footer>
+
+    <!-- 全站懸浮 LINE 按鈕 -->
+    <a href="https://line.me/ti/p/您的LINEID" target="_blank" class="floating-line">
+        <i class="fab fa-line" style="font-size: 1.5rem;"></i>
+        <span>預約 / 詢價</span>
+    </a>
+
+</body>
+</html>
